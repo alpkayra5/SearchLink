@@ -5,9 +5,9 @@ def check_link(link):
     try:
         response = requests.get(link, timeout=5)
         if response.url.startswith('https://'):
-            print('Link is secure.')
+            print('Link güvenli.')
         else:
-            print('Warning: Link is not secure.')
+            print('Link güvensiz.')
     except requests.exceptions.RequestException as e:
         print(f'Error: {e}')
     except Exception as e:
@@ -24,13 +24,13 @@ def is_safe(link):
         return False
 
 def main():
-    link = input('Enter a link: ')
+    link = input('Link giriniz: ')
     parsed_link = urlparse(link)
     if not parsed_link.scheme:
-        print('Error: Invalid link.')
+        print('Hatalı link verdiniz..')
         return
     if not is_safe(link):
-        print('Warning: Link may be unsafe.')
+        print('Link güvensiz.')
     else:
         check_link(link)
 
